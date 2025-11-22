@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="text-align: center; padding: 2rem;">
+    <h1>Welcome to City Hospital</h1>
+    <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+        Your health is our priority. Book appointments easily online.
+    </p>
+    
+    {% if not session.get('user_id') %}
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <a href="{{ url_for('register') }}" class="btn" style="width: auto; text-decoration: none; display: inline-block;">Register as Patient</a>
+            <a href="{{ url_for('login') }}" class="btn" style="width: auto; text-decoration: none; display: inline-block; background-color: var(--secondary-color);">Login</a>
+        </div>
+    {% else %}
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <a href="{{ url_for('book_appointment') }}" class="btn" style="width: auto; text-decoration: none; display: inline-block;">Book Now</a>
+            <a href="{{ url_for('my_appointments') }}" class="btn" style="width: auto; text-decoration: none; display: inline-block; background-color: var(--secondary-color);">View My Appointments</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
